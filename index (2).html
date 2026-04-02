@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flynn Zito — Friday Office Rotation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:        #0d1e3a;
+    --navy-mid:    #16305e;
+    --navy-light:  #1e4080;
+    --blue-medium: #2a5fa8;
+    --blue-soft:   #d6e4f7;
+    --blue-pale:   #eaf2fb;
+    --white:       #ffffff;
+    --off-white:   #f4f7fc;
+    --border:      #c8d8ee;
+    --border-dark: #a0bada;
+    --gold:        #b89a4e;
+    --gold-light:  #d4b96a;
+    --gold-pale:   #f5edda;
+    --muted:       #5a6e8a;
+    --text:        #0d1e3a;
+    --green-bg:    #e4f4ea;
+    --green-text:  #165c2e;
+    --red-bg:      #fdecea;
+    --red-text:    #8b2020;
+    --amber-bg:    #fef3e2;
+    --amber-text:  #7a4d0a;
+    --radius:      8px;
+    --radius-sm:   5px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--off-white); color: var(--text); min-height: 100vh; }
+
+  .top-bar { background: var(--navy); height: 4px; }
+
+  /* HEADER */
+  .site-header { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; height: 80px; box-shadow: 0 2px 12px rgba(13,30,58,0.08); }
+  .logo-area { display: flex; align-items: center; }
+  .logo-img { height: 52px; width: auto; display: block; }
+  .logo-wordmark { display: flex; flex-direction: column; line-height: 1.1; border-left: 3px solid var(--gold); padding-left: 14px; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); letter-spacing: 0.01em; }
+  .logo-sub { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 2px; }
+  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .header-page-title { font-size: 14px; font-weight: 600; color: var(--navy-mid); }
+  .header-subtitle { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* HERO */
+  .hero-band { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%); padding: 2rem 2.5rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .hero-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius); padding: 14px 22px; text-align: center; min-width: 120px; }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--gold-light); line-height: 1; }
+  .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 5px; }
+  .hero-text { flex: 1; min-width: 200px; }
+  .hero-text h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .hero-text p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 480px; }
+
+  /* PAGE BODY — leaderboard sidebar + main */
+  .page-body { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  .main-content { flex: 1; min-width: 0; }
+
+  /* LEADERBOARD PANEL */
+  .leaderboard-panel {
+    width: 230px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 6px rgba(13,30,58,0.07);
+    overflow: hidden;
+  }
+  .lb-header {
+    background: var(--navy);
+    padding: 14px 16px 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .lb-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .lb-subtitle { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
+  .lb-toggle { display: flex; border-bottom: 1px solid var(--border); }
+  .lb-toggle-btn { flex: 1; padding: 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border: none; background: var(--off-white); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'Source Sans 3', sans-serif; border-radius: 0; }
+  .lb-toggle-btn:first-child { border-right: 1px solid var(--border); }
+  .lb-toggle-btn.active { background: var(--white); color: var(--navy); }
+  .lb-body { padding: 12px 14px 16px; }
+  .lb-mode-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 7px; border-bottom: 1px solid var(--blue-soft); }
+  .lb-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--blue-soft); }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-rank { font-size: 10px; font-weight: 700; width: 16px; text-align: center; flex-shrink: 0; color: var(--muted); }
+  .rank-1 { color: #b89a4e; }
+  .rank-2 { color: #8a9aaa; }
+  .rank-3 { color: #a0734a; }
+  .lb-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: var(--gold-light); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
+  .lb-info { flex: 1; min-width: 0; }
+  .lb-name { font-size: 12px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-bar-wrap { height: 3px; background: var(--blue-soft); border-radius: 2px; margin-top: 4px; }
+  .lb-bar { height: 3px; background: var(--navy-mid); border-radius: 2px; transition: width 0.5s ease; }
+  .lb-score-col { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+  .lb-score { font-size: 16px; font-weight: 700; color: var(--navy-mid); font-family: 'Playfair Display', serif; line-height: 1; }
+  .lb-proj-score { font-size: 10px; color: var(--muted); line-height: 1; margin-top: 3px; }
+  .lb-zero { color: var(--border-dark); }
+  .lb-inactive-row { padding: 10px 0 2px; border-top: 1px solid var(--blue-soft); margin-top: 4px; }
+  .lb-inactive-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 6px; }
+  .lb-inactive-item { display: flex; align-items: center; gap: 7px; padding: 4px 0; }
+  .lb-inactive-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border); color: var(--muted); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
+  .lb-inactive-name { font-size: 11px; color: var(--muted); flex: 1; }
+  .lb-inactive-tag { font-size: 9px; background: var(--red-bg); color: var(--red-text); padding: 1px 5px; border-radius: 3px; font-weight: 600; }
+
+  /* TABS */
+  .tabs { display: flex; margin-bottom: 1.75rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 5px; width: fit-content; box-shadow: 0 1px 4px rgba(13,30,58,0.06); }
+  .tab { padding: 8px 20px; border: none; border-radius: var(--radius-sm); background: transparent; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; letter-spacing: 0.03em; transition: all 0.15s; }
+  .tab:hover { color: var(--navy); background: var(--blue-pale); }
+  .tab.active { background: var(--navy); color: var(--white); font-weight: 600; }
+
+  /* CARDS */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 1px 6px rgba(13,30,58,0.06); }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--blue-soft); display: flex; align-items: center; gap: 10px; }
+  .card-title-icon { width: 28px; height: 28px; background: var(--blue-pale); border: 1px solid var(--border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+
+  /* SCHEDULE */
+  .month-group { margin-bottom: 2rem; }
+  .month-label { font-size: 12px; font-weight: 600; color: var(--white); background: var(--navy-mid); padding: 6px 14px; border-radius: var(--radius-sm); width: fit-content; margin-bottom: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 10px; }
+  .week-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; transition: box-shadow 0.15s, border-color 0.15s; }
+  .week-card:hover { box-shadow: 0 4px 14px rgba(13,30,58,0.12); border-color: var(--border-dark); }
+  .week-card.is-closed { opacity: 0.5; }
+  .week-card-header { background: var(--blue-soft); padding: 7px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .week-card.is-override .week-card-header { background: var(--gold-pale); }
+  .week-card.is-closed .week-card-header { background: #e8e8e8; }
+  .week-date { font-size: 11px; font-weight: 700; color: var(--navy-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+  .week-card.is-override .week-date { color: var(--amber-text); }
+  .override-badge { font-size: 9px; background: var(--gold); color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .closed-badge { font-size: 9px; background: #aaa; color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .week-card-body { padding: 10px 12px 12px; }
+  .in-office { font-size: 13px; font-weight: 600; color: var(--green-text); line-height: 1.5; margin-bottom: 8px; }
+  .person-line { display: flex; align-items: center; gap: 6px; }
+  .person-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-text); flex-shrink: 0; }
+  .remote-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 3px; }
+  .remote-list { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  /* PEOPLE */
+  .person-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--blue-soft); }
+  .person-row:last-child { border-bottom: none; }
+  .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; background: var(--navy); color: var(--gold-light); font-family: 'Playfair Display', serif; border: 2px solid var(--blue-soft); }
+  .person-name { font-size: 14px; font-weight: 500; flex: 1; }
+  .status-pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .pill-active { background: var(--green-bg); color: var(--green-text); }
+  .pill-inactive { background: var(--red-bg); color: var(--red-text); }
+
+  /* BUTTONS */
+  button { cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
+  button:hover { background: var(--blue-pale); border-color: var(--border-dark); }
+  .btn-primary { background: var(--navy); color: var(--white); border-color: var(--navy); padding: 8px 20px; font-size: 13px; font-weight: 600; }
+  .btn-primary:hover { background: var(--navy-light); }
+  .btn-danger { color: var(--red-text); border-color: #f0c0c0; }
+  .btn-danger:hover { background: var(--red-bg); }
+
+  /* FORM */
+  input[type="text"], input[type="date"], select { font-family: 'Source Sans 3', sans-serif; font-size: 13px; padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--white); color: var(--text); outline: none; transition: border-color 0.15s; }
+  input:focus, select:focus { border-color: var(--blue-medium); box-shadow: 0 0 0 3px rgba(42,95,168,0.12); }
+  .form-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--muted); min-width: 75px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .add-person-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--blue-soft); }
+  .notice { font-size: 12px; color: var(--muted); margin-top: 1rem; padding: 10px 14px; background: var(--blue-pale); border-radius: var(--radius-sm); border-left: 3px solid var(--blue-medium); line-height: 1.6; }
+  .override-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--blue-soft); }
+  .override-item:last-child { border-bottom: none; }
+  .empty-state { font-size: 13px; color: var(--muted); padding: 8px 0; font-style: italic; }
+
+  /* HOW TO */
+  .howto-step { display: flex; gap: 14px; margin-bottom: 1.1rem; align-items: flex-start; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--navy-mid); color: var(--gold-light); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-text { font-size: 13px; line-height: 1.7; }
+  .step-text strong { font-weight: 600; color: var(--navy); }
+  .step-text code { font-family: 'Courier New', monospace; font-size: 12px; background: var(--blue-pale); border: 1px solid var(--border); padding: 1px 6px; border-radius: 3px; color: var(--navy-mid); }
+
+  /* FOOTER */
+  .site-footer { background: var(--navy); border-top: 3px solid var(--gold); padding: 18px 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--gold-light); }
+  .footer-note { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+
+  @media (max-width: 780px) {
+    .page-body { flex-direction: column-reverse; }
+    .leaderboard-panel { width: 100%; position: static; }
+    .site-header { padding: 0 1rem; }
+    .hero-band { padding: 1.25rem 1rem; }
+    .header-right { display: none; }
+    .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<header class="site-header">
+  <div class="logo-area">
+    <!--
+      LOGO: Replace the div below with:
+      <img src="logo.png" alt="Flynn Zito Capital Management" class="logo-img" />
+      after uploading your logo file to GitHub alongside index.html.
+    -->
+    <div class="logo-wordmark">
+      <span class="logo-name">Flynn Zito</span>
+      <span class="logo-sub">Capital Management</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-page-title">Friday Office Rotation</span>
+    <span class="header-subtitle">Internal Staff Schedule</span>
+  </div>
+</header>
+
+<div class="hero-band">
+  <div class="hero-text">
+    <h2>Friday Office Rotation</h2>
+    <p>Two team members are required in the office each Friday. The schedule below shows the next 6 months — always up to date, no manual tracking needed.</p>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-num" id="stat-active">6</div>
+    <div class="hero-stat-label">Active Members</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-num">2</div>
+    <div class="hero-stat-label">In Office / Friday</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-num">26</div>
+    <div class="hero-stat-label">Weeks Shown</div>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- LEADERBOARD PANEL -->
+  <aside class="leaderboard-panel">
+    <div class="lb-header">
+      <div class="lb-title">Friday Tally</div>
+      <div class="lb-subtitle" id="lb-year-label">2026</div>
+    </div>
+    <div class="lb-toggle">
+      <button class="lb-toggle-btn active" id="btn-actual" onclick="setLbMode('actual')">Actual</button>
+      <button class="lb-toggle-btn" id="btn-projected" onclick="setLbMode('projected')">Projected</button>
+    </div>
+    <div class="lb-body">
+      <div class="lb-mode-label" id="lb-mode-label">Fridays worked so far</div>
+      <div id="lb-rows"></div>
+      <div id="lb-inactive-section"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('schedule')">Schedule</button>
+      <button class="tab" onclick="showTab('people')">People</button>
+      <button class="tab" onclick="showTab('override')">Override</button>
+      <button class="tab" onclick="showTab('howto')">How to edit</button>
+    </div>
+
+    <div id="tab-schedule">
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">📅</div>6-Month Friday Schedule</div>
+        <div id="schedule-grid"></div>
+        <div class="notice">Two team members are required in the office each Friday. Pairs rotate using round-robin scheduling — with 6 active members there are 15 unique pairs before any combination repeats. The tally on the left counts from April 10, 2026 onward.</div>
+      </div>
+    </div>
+
+    <div id="tab-people" style="display:none;">
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">👥</div>Team Members</div>
+        <div id="people-list"></div>
+        <div class="add-person-row">
+          <input type="text" id="new-name" placeholder="Full name" style="width:150px;" />
+          <select id="new-status">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive — no remote access yet</option>
+          </select>
+          <button class="btn-primary" onclick="addPerson()">Add person</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-override" style="display:none;">
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">✏️</div>Override a Specific Friday</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:1.1rem;line-height:1.6;">Use this when someone can't make it in and you need to manually assign who covers that Friday.</p>
+        <div class="form-row"><span class="form-label">Date</span><input type="date" id="override-date" /></div>
+        <div class="form-row"><span class="form-label">Person 1</span><select id="override-p1"></select></div>
+        <div class="form-row"><span class="form-label">Person 2</span><select id="override-p2"></select></div>
+        <button class="btn-primary" style="margin-top:10px;" onclick="applyOverride()">Save override</button>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">📋</div>Active Overrides</div>
+        <div id="overrides-list"><p class="empty-state">No overrides set.</p></div>
+      </div>
+    </div>
+
+    <div id="tab-howto" style="display:none;">
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">📖</div>How to Make Changes</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6;">This page lives on GitHub Pages. Changes take about 2 minutes — no coding knowledge needed.</p>
+        <div class="howto-step"><div class="step-num">1</div><div class="step-text">Go to <strong>github.com</strong> and sign in to the Flynn Zito account.</div></div>
+        <div class="howto-step"><div class="step-num">2</div><div class="step-text">Open the repository <strong>friday-rotation</strong> and click <strong>index.html</strong>.</div></div>
+        <div class="howto-step"><div class="step-num">3</div><div class="step-text">Click the <strong>pencil icon</strong> (top right) to open the editor.</div></div>
+        <div class="howto-step"><div class="step-num">4</div><div class="step-text">To add/change a person find <code>// ===== EDIT PEOPLE HERE =====</code>. Change <code>inactive</code> to <code>active</code> to add someone to the rotation.</div></div>
+        <div class="howto-step"><div class="step-num">5</div><div class="step-text">For a one-off override find <code>// ===== EDIT OVERRIDES HERE =====</code> and add:<br/><code style="display:inline-block;margin-top:5px;">'2026-06-12': ['Stefan', 'Cole'],</code></div></div>
+        <div class="howto-step"><div class="step-num">6</div><div class="step-text">Click <strong>Commit changes</strong> — the live site updates in about 60 seconds.</div></div>
+        <div class="notice" style="margin-top:0.5rem;"><strong>Adding the real logo:</strong> Upload logo.png to GitHub alongside index.html, then replace the logo-wordmark div with <code>&lt;img src="logo.png" class="logo-img" /&gt;</code>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <span class="footer-name">Flynn Zito Capital Management, LLC</span>
+  <span class="footer-note">Internal use only · Friday Office Rotation</span>
+</footer>
+
+<script>
+// ===== EDIT PEOPLE HERE =====
+// 'active'   = in the rotation
+// 'inactive' = excluded (no remote access yet)
+// Change Joe to 'active' when he gets remote access
+let people = [
+  { name: 'Joacim',   status: 'active'   },
+  { name: 'Stefan',   status: 'active'   },
+  { name: 'Maria',    status: 'active'   },
+  { name: 'Melanie',  status: 'active'   },
+  { name: 'Cole',     status: 'active'   },
+  { name: 'Anthony',  status: 'active'   },
+  { name: 'Joe',      status: 'inactive' },
+];
+
+// ===== EDIT OVERRIDES HERE =====
+// Format: 'YYYY-MM-DD': ['Person1', 'Person2'],
+// April 3 is office closed — no tally count
+let overrides = {
+  '2026-04-03': ['Stefan', 'Maria'],
+};
+
+// ===== OFFICE CLOSED DATES =====
+// These Fridays are skipped entirely — no one counts
+// Add holidays here as needed: 'YYYY-MM-DD'
+const CLOSED_DATES = [
+  '2026-04-03', // Office closed — tally starts April 10
+];
+// ===== END OF EDITABLE SECTIONS =====
+
+const START_DATE    = new Date('2026-04-03T00:00:00'); // schedule starts
+const TALLY_START   = new Date('2026-04-10T00:00:00'); // tally counts from here
+const YEAR_START    = new Date('2026-01-01T00:00:00');
+const YEAR_END      = new Date('2026-12-31T00:00:00');
+
+let lbMode = 'actual'; // 'actual' or 'projected'
+
+function dateKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function fmtShort(d) { return d.toLocaleDateString('en-US', { month:'short', day:'numeric' }); }
+function fmtMonth(d) { return d.toLocaleDateString('en-US', { month:'long', year:'numeric' }); }
+
+function getFridays() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const anchor = today >= START_DATE ? today : new Date(START_DATE);
+  const dow = anchor.getDay();
+  const diff = (5 - dow + 7) % 7;
+  const first = new Date(anchor);
+  first.setDate(anchor.getDate() + diff);
+  const fridays = [];
+  const d = new Date(first);
+  for (let i = 0; i < 26; i++) { fridays.push(new Date(d)); d.setDate(d.getDate() + 7); }
+  return fridays;
+}
+
+// All Fridays in 2026 from tally start to year end
+function getAllTallyFridays() {
+  const fridays = [];
+  const d = new Date(TALLY_START);
+  while (d <= YEAR_END) {
+    fridays.push(new Date(d));
+    d.setDate(d.getDate() + 7);
+  }
+  return fridays;
+}
+
+function generateRoundRobin(players) {
+  if (players.length < 2) return [];
+  const list = players.length % 2 === 0 ? [...players] : [...players, null];
+  const total = list.length;
+  const allPairs = [];
+  const fixed = list[0];
+  const rotating = list.slice(1);
+  for (let r = 0; r < total - 1; r++) {
+    const round = rotating.slice(r).concat(rotating.slice(0, r));
+    const pairs = [[fixed, round[0]]];
+    for (let i = 1; i < total / 2; i++) pairs.push([round[i], round[total-1-i]]);
+    pairs.filter(([a,b]) => a!==null && b!==null).forEach(p => allPairs.push(p));
+  }
+  return allPairs;
+}
+
+function getWeekIndex(fri) {
+  return Math.round((fri - START_DATE) / (7*24*60*60*1000));
+}
+
+function getPairForFriday(fri, active, allPairs) {
+  const key = dateKey(fri);
+  if (CLOSED_DATES.includes(key)) return null;
+  if (overrides[key]) return overrides[key];
+  if (!allPairs.length) return [];
+  const wi = getWeekIndex(fri);
+  const pair = allPairs[((wi % allPairs.length) + allPairs.length) % allPairs.length];
+  return pair ? pair.map(p => p.name) : [];
+}
+
+// Build tally counts for all 2026 Fridays from TALLY_START
+function buildTallies() {
+  const active = people.filter(p => p.status === 'active');
+  const allPairs = generateRoundRobin(active);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const allFridays = getAllTallyFridays();
+
+  const actual = {};
+  const projected = {};
+  people.forEach(p => { actual[p.name] = 0; projected[p.name] = 0; });
+
+  allFridays.forEach(fri => {
+    const pair = getPairForFriday(fri, active, allPairs);
+    if (!pair) return; // closed
+    const isPast = fri < today;
+    pair.forEach(name => {
+      if (isPast) actual[name] = (actual[name] || 0) + 1;
+      projected[name] = (projected[name] || 0) + 1;
+    });
+  });
+
+  return { actual, projected };
+}
+
+function renderLeaderboard() {
+  const active = people.filter(p => p.status === 'active');
+  const inactive = people.filter(p => p.status === 'inactive');
+  const { actual, projected } = buildTallies();
+  const year = TALLY_START.getFullYear();
+
+  document.getElementById('lb-year-label').textContent = `${year} Season`;
+  document.getElementById('lb-mode-label').textContent =
+    lbMode === 'actual' ? 'Fridays worked so far' : 'Projected full year';
+
+  // Sort by chosen mode descending
+  const scores = lbMode === 'actual' ? actual : projected;
+  const sorted = [...active].sort((a, b) => (scores[b.name] || 0) - (scores[a.name] || 0));
+  const maxScore = Math.max(...sorted.map(p => scores[p.name] || 0), 1);
+
+  const rankSymbols = ['🥇', '🥈', '🥉'];
+
+  const rowsEl = document.getElementById('lb-rows');
+  rowsEl.innerHTML = sorted.map((p, i) => {
+    const score = scores[p.name] || 0;
+    const proj = projected[p.name] || 0;
+    const pct = Math.round((score / maxScore) * 100);
+    const rankClass = i < 3 ? `rank-${i+1}` : '';
+    const rankLabel = i < 3 ? rankSymbols[i] : `${i+1}`;
+    return `
+      <div class="lb-row">
+        <div class="lb-rank ${rankClass}">${rankLabel}</div>
+        <div class="lb-avatar">${p.name.slice(0,2).toUpperCase()}</div>
+        <div class="lb-info">
+          <div class="lb-name">${p.name}</div>
+          <div class="lb-bar-wrap"><div class="lb-bar" style="width:${pct}%"></div></div>
+        </div>
+        <div class="lb-score-col">
+          <div class="lb-score ${score === 0 ? 'lb-zero' : ''}">${score}</div>
+          ${lbMode === 'actual' ? `<div class="lb-proj-score">/${proj} proj</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  // Inactive section
+  const inactiveEl = document.getElementById('lb-inactive-section');
+  if (inactive.length) {
+    inactiveEl.innerHTML = `
+      <div class="lb-inactive-row">
+        <div class="lb-inactive-label">Not yet active</div>
+        ${inactive.map(p => `
+          <div class="lb-inactive-item">
+            <div class="lb-inactive-avatar">${p.name.slice(0,2).toUpperCase()}</div>
+            <span class="lb-inactive-name">${p.name}</span>
+            <span class="lb-inactive-tag">Pending</span>
+          </div>`).join('')}
+      </div>`;
+  } else {
+    inactiveEl.innerHTML = '';
+  }
+}
+
+function setLbMode(mode) {
+  lbMode = mode;
+  document.getElementById('btn-actual').classList.toggle('active', mode === 'actual');
+  document.getElementById('btn-projected').classList.toggle('active', mode === 'projected');
+  renderLeaderboard();
+}
+
+function renderSchedule() {
+  const active = people.filter(p => p.status === 'active');
+  const allPairs = generateRoundRobin(active);
+  const fridays = getFridays();
+  const container = document.getElementById('schedule-grid');
+  container.innerHTML = '';
+  document.getElementById('stat-active').textContent = active.length;
+
+  const months = {};
+  fridays.forEach(fri => {
+    const mk = fmtMonth(fri);
+    if (!months[mk]) months[mk] = [];
+    months[mk].push(fri);
+  });
+
+  Object.entries(months).forEach(([monthLabel, fris]) => {
+    const group = document.createElement('div');
+    group.className = 'month-group';
+    const lbl = document.createElement('div');
+    lbl.className = 'month-label';
+    lbl.textContent = monthLabel;
+    group.appendChild(lbl);
+    const grid = document.createElement('div');
+    grid.className = 'schedule-grid';
+
+    fris.forEach(fri => {
+      const key = dateKey(fri);
+      const isClosed = CLOSED_DATES.includes(key);
+      let inOffice, isOverride = false;
+
+      if (isClosed) {
+        inOffice = [];
+      } else if (overrides[key]) {
+        inOffice = overrides[key]; isOverride = true;
+      } else {
+        const wi = getWeekIndex(fri);
+        const pair = allPairs.length ? allPairs[((wi % allPairs.length) + allPairs.length) % allPairs.length] : [];
+        inOffice = pair ? pair.map(p => p.name) : [];
+      }
+
+      const remote = isClosed ? [] : active.map(p => p.name).filter(n => !inOffice.includes(n));
+      const card = document.createElement('div');
+      card.className = 'week-card' + (isOverride ? ' is-override' : '') + (isClosed ? ' is-closed' : '');
+      card.innerHTML = `
+        <div class="week-card-header">
+          <span class="week-date">${fmtShort(fri)}</span>
+          ${isOverride ? '<span class="override-badge">Override</span>' : ''}
+          ${isClosed ? '<span class="closed-badge">Closed</span>' : ''}
+        </div>
+        <div class="week-card-body">
+          ${isClosed
+            ? '<div style="font-size:12px;color:var(--muted);font-style:italic;">Office closed</div>'
+            : `<div class="in-office">${inOffice.map(n=>`<div class="person-line"><span class="person-dot"></span>${n}</div>`).join('')}</div>
+               <div class="remote-label">Remote</div>
+               <div class="remote-list">${remote.join(', ') || '—'}</div>`
+          }
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    group.appendChild(grid);
+    container.appendChild(group);
+  });
+}
+
+function renderPeople() {
+  const list = document.getElementById('people-list');
+  list.innerHTML = '';
+  people.forEach((p, i) => {
+    const row = document.createElement('div');
+    row.className = 'person-row';
+    row.innerHTML = `
+      <div class="avatar">${p.name.slice(0,2).toUpperCase()}</div>
+      <span class="person-name">${p.name}</span>
+      <span class="status-pill ${p.status==='active'?'pill-active':'pill-inactive'}">${p.status==='active'?'Active':'No remote access'}</span>
+      <button onclick="toggleStatus(${i})">${p.status==='active'?'Deactivate':'Activate'}</button>
+      <button class="btn-danger" onclick="removePerson(${i})">Remove</button>`;
+    list.appendChild(row);
+  });
+}
+
+function renderOverrideSelects() {
+  const active = people.filter(p => p.status === 'active');
+  ['override-p1','override-p2'].forEach((id,idx) => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = active.map(p=>`<option value="${p.name}">${p.name}</option>`).join('');
+    if (idx===1 && active.length>1) sel.selectedIndex=1;
+  });
+}
+
+function renderOverridesList() {
+  const div = document.getElementById('overrides-list');
+  const keys = Object.keys(overrides).sort();
+  if (!keys.length) { div.innerHTML='<p class="empty-state">No overrides set.</p>'; return; }
+  div.innerHTML = keys.map(k=>`
+    <div class="override-item">
+      <span style="font-size:12px;color:var(--muted);min-width:100px;font-weight:600;">${k}</span>
+      <span style="font-size:13px;font-weight:600;color:var(--green-text);flex:1;">${overrides[k].join(' &amp; ')}</span>
+      <button class="btn-danger" onclick="removeOverride('${k}')">Remove</button>
+    </div>`).join('');
+}
+
+function render() {
+  renderSchedule();
+  renderPeople();
+  renderLeaderboard();
+  renderOverrideSelects();
+  renderOverridesList();
+}
+
+function showTab(t) {
+  ['schedule','people','override','howto'].forEach((id,idx) => {
+    document.getElementById('tab-'+id).style.display = id===t?'':'none';
+    document.querySelectorAll('.tab')[idx].classList.toggle('active', id===t);
+  });
+}
+
+function addPerson() {
+  const name = document.getElementById('new-name').value.trim();
+  if (!name) return;
+  people.push({ name, status: document.getElementById('new-status').value });
+  document.getElementById('new-name').value = '';
+  render();
+}
+function removePerson(i) {
+  if (confirm(`Remove ${people[i].name}?`)) { people.splice(i,1); render(); }
+}
+function toggleStatus(i) {
+  people[i].status = people[i].status==='active'?'inactive':'active'; render();
+}
+function applyOverride() {
+  const date = document.getElementById('override-date').value;
+  const p1 = document.getElementById('override-p1').value;
+  const p2 = document.getElementById('override-p2').value;
+  if (!date) { alert('Please select a date.'); return; }
+  if (p1===p2) { alert('Please select two different people.'); return; }
+  overrides[date] = [p1,p2]; render();
+}
+function removeOverride(k) { delete overrides[k]; render(); }
+
+document.getElementById('override-date').value = '2026-04-10';
+render();
+</script>
+</body>
+</html>
