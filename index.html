@@ -249,7 +249,6 @@
     <div class="tabs">
       <button class="tab active" onclick="showTab('schedule')">Schedule</button>
       <button class="tab" onclick="showTab('people')">People</button>
-      <button class="tab" onclick="showTab('override')">Override</button>
       <button class="tab" onclick="showTab('howto')">How to edit</button>
     </div>
 
@@ -273,21 +272,6 @@
           </select>
           <button class="btn-primary" onclick="addPerson()">Add person</button>
         </div>
-      </div>
-    </div>
-
-    <div id="tab-override" style="display:none;">
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">✏️</div>Override a Specific Friday</div>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:1.1rem;line-height:1.6;">Use this when someone can't make it in and you need to manually assign who covers that Friday.</p>
-        <div class="form-row"><span class="form-label">Date</span><input type="date" id="override-date" /></div>
-        <div class="form-row"><span class="form-label">Person 1</span><select id="override-p1"></select></div>
-        <div class="form-row"><span class="form-label">Person 2</span><select id="override-p2"></select></div>
-        <button class="btn-primary" style="margin-top:10px;" onclick="applyOverride()">Save override</button>
-      </div>
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">📋</div>Active Overrides</div>
-        <div id="overrides-list"><p class="empty-state">No overrides set.</p></div>
       </div>
     </div>
 
@@ -334,7 +318,12 @@ let overrides = {
   '2026-04-10': ['Maria', 'Trip'],
   '2026-04-17': ['Cole', 'Melanie'],
   '2026-04-24': ['Joacim', 'Maria'],
+  '2026-05-01': ['Stefan', 'Cole'],
+  '2026-05-08': ['Anthony', 'Joacim'],
+  '2026-05-15': ['Stefan', 'Maria'],
+  '2026-05-22': ['Cole', 'Anthony'],
   '2026-06-26': ['Joacim', 'Stefan'],
+  '2026-07-24': ['Stefan', 'Cole'],
 };
 
 // ===== OFFICE CLOSED DATES =====
@@ -612,7 +601,7 @@ function render() {
 }
 
 function showTab(t) {
-  ['schedule','people','override','howto'].forEach((id,idx) => {
+  ['schedule','people','howto'].forEach((id,idx) => {
     document.getElementById('tab-'+id).style.display = id===t?'':'none';
     document.querySelectorAll('.tab')[idx].classList.toggle('active', id===t);
   });
