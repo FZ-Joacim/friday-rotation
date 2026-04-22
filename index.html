@@ -56,27 +56,13 @@
   .hero-text h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
   .hero-text p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 480px; }
 
-  /* PAGE BODY — leaderboard sidebar + main */
+  /* PAGE BODY */
   .page-body { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
   .main-content { flex: 1; min-width: 0; }
 
   /* LEADERBOARD PANEL */
-  .leaderboard-panel {
-    width: 230px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 1.5rem;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: 0 1px 6px rgba(13,30,58,0.07);
-    overflow: hidden;
-  }
-  .lb-header {
-    background: var(--navy);
-    padding: 14px 16px 12px;
-    border-bottom: 2px solid var(--gold);
-  }
+  .leaderboard-panel { width: 230px; flex-shrink: 0; position: sticky; top: 1.5rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 1px 6px rgba(13,30,58,0.07); overflow: hidden; }
+  .lb-header { background: var(--navy); padding: 14px 16px 12px; border-bottom: 2px solid var(--gold); }
   .lb-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
   .lb-subtitle { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
   .lb-toggle { display: flex; border-bottom: 1px solid var(--border); }
@@ -128,7 +114,6 @@
   .week-card-header { background: var(--blue-soft); padding: 7px 12px; display: flex; align-items: center; justify-content: space-between; }
   .week-card.is-closed .week-card-header { background: #e8e8e8; }
   .week-date { font-size: 11px; font-weight: 700; color: var(--navy-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-  .override-badge { font-size: 9px; background: var(--gold); color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
   .closed-badge { font-size: 9px; background: #aaa; color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
   .week-card-body { padding: 10px 12px 12px; }
   .in-office { font-size: 13px; font-weight: 600; color: var(--green-text); line-height: 1.5; margin-bottom: 8px; }
@@ -157,12 +142,8 @@
   /* FORM */
   input[type="text"], input[type="date"], select { font-family: 'Source Sans 3', sans-serif; font-size: 13px; padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--white); color: var(--text); outline: none; transition: border-color 0.15s; }
   input:focus, select:focus { border-color: var(--blue-medium); box-shadow: 0 0 0 3px rgba(42,95,168,0.12); }
-  .form-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--muted); min-width: 75px; letter-spacing: 0.04em; text-transform: uppercase; }
   .add-person-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--blue-soft); }
   .notice { font-size: 12px; color: var(--muted); margin-top: 1rem; padding: 10px 14px; background: var(--blue-pale); border-radius: var(--radius-sm); border-left: 3px solid var(--blue-medium); line-height: 1.6; }
-  .override-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--blue-soft); }
-  .override-item:last-child { border-bottom: none; }
   .empty-state { font-size: 13px; color: var(--muted); padding: 8px 0; font-style: italic; }
 
   /* HOW TO */
@@ -193,11 +174,6 @@
 
 <header class="site-header">
   <div class="logo-area">
-    <!--
-      LOGO: Replace the div below with:
-      <img src="logo.png" alt="Flynn Zito Capital Management" class="logo-img" />
-      after uploading your logo file to GitHub alongside index.html.
-    -->
     <img src="logo.png.jpg" alt="Flynn Zito Capital Management" class="logo-img" />
   </div>
   <div class="header-right">
@@ -212,7 +188,7 @@
     <p>Two team members are required in the office each Friday. The schedule below shows the next 6 months — always up to date, no manual tracking needed.</p>
   </div>
   <div class="hero-stat">
-    <div class="hero-stat-num" id="stat-active">6</div>
+    <div class="hero-stat-num" id="stat-active">5</div>
     <div class="hero-stat-label">Active Members</div>
   </div>
   <div class="hero-stat">
@@ -283,9 +259,9 @@
         <div class="howto-step"><div class="step-num">2</div><div class="step-text">Open the repository <strong>friday-rotation</strong> and click <strong>index.html</strong>.</div></div>
         <div class="howto-step"><div class="step-num">3</div><div class="step-text">Click the <strong>pencil icon</strong> (top right) to open the editor.</div></div>
         <div class="howto-step"><div class="step-num">4</div><div class="step-text">To add/change a person find <code>// ===== EDIT PEOPLE HERE =====</code>. Change <code>inactive</code> to <code>active</code> to add someone to the rotation.</div></div>
-        <div class="howto-step"><div class="step-num">5</div><div class="step-text">For a one-off override find <code>// ===== EDIT OVERRIDES HERE =====</code> and add:<br/><code style="display:inline-block;margin-top:5px;">'2026-06-12': ['Stefan', 'Cole'],</code></div></div>
-        <div class="howto-step"><div class="step-num">6</div><div class="step-text">Click <strong>Commit changes</strong> — the live site updates in about 60 seconds.</div></div>
-        <div class="notice" style="margin-top:0.5rem;"><strong>Adding the real logo:</strong> Upload logo.png to GitHub alongside index.html, then replace the logo-wordmark div with <code>&lt;img src="logo.png" class="logo-img" /&gt;</code>.</div>
+        <div class="howto-step"><div class="step-num">5</div><div class="step-text">For a schedule change find <code>// ===== EDIT OVERRIDES HERE =====</code> and add:<br/><code style="display:inline-block;margin-top:5px;">'2026-06-12': ['Stefan', 'Cole'],</code></div></div>
+        <div class="howto-step"><div class="step-num">6</div><div class="step-text">For a closed day find <code>// ===== OFFICE CLOSED DATES =====</code> and add the date.</div></div>
+        <div class="howto-step"><div class="step-num">7</div><div class="step-text">Click <strong>Commit changes</strong> — the live site updates in about 60 seconds.</div></div>
       </div>
     </div>
   </div>
@@ -312,36 +288,35 @@ let people = [
 
 // ===== EDIT OVERRIDES HERE =====
 // Format: 'YYYY-MM-DD': ['Person1', 'Person2'],
-// April 3 is office closed — no tally count
 let overrides = {
-  '2026-04-03': ['Stefan', 'Maria'],
-  '2026-04-10': ['Maria', 'Trip'],
-  '2026-04-17': ['Cole', 'Melanie'],
+  '2026-04-10': ['Maria', 'Stefan'],
+  '2026-04-17': ['Cole', 'Anthony'],
   '2026-04-24': ['Joacim', 'Maria'],
   '2026-05-01': ['Stefan', 'Cole'],
-  '2026-05-08': ['Anthony', 'Joacim'],
-  '2026-05-15': ['Stefan', 'Maria'],
-  '2026-05-22': ['Cole', 'Anthony'],
+  '2026-05-08': ['Anthony', 'Maria'],
+  '2026-05-15': ['Stefan', 'Cole'],
+  '2026-05-22': ['Anthony', 'Maria'],
+  '2026-05-29': ['Joacim', 'Stefan'],
+  '2026-06-05': ['Cole', 'Maria'],
+  '2026-06-12': ['Anthony', 'Stefan'],
   '2026-06-26': ['Joacim', 'Stefan'],
   '2026-07-24': ['Stefan', 'Cole'],
 };
 
 // ===== OFFICE CLOSED DATES =====
 // These Fridays are skipped entirely — no one counts
-// Add holidays here as needed: 'YYYY-MM-DD'
 const CLOSED_DATES = [
   '2026-04-03', // Office closed — tally starts April 10
-  '2026-06-19', // Office closed — Juneteenth 
-  '2026-07-03', // Office Closed — Independence Day 
+  '2026-06-19', // Office closed — Juneteenth
+  '2026-07-03', // Office closed — Independence Day
 ];
 // ===== END OF EDITABLE SECTIONS =====
 
-const START_DATE    = new Date('2026-04-03T00:00:00'); // schedule starts
-const TALLY_START   = new Date('2026-04-10T00:00:00'); // tally counts from here
-const YEAR_START    = new Date('2026-01-01T00:00:00');
-const YEAR_END      = new Date('2026-12-31T00:00:00');
+const START_DATE  = new Date('2026-04-03T00:00:00');
+const TALLY_START = new Date('2026-04-10T00:00:00');
+const YEAR_END    = new Date('2026-12-31T00:00:00');
 
-let lbMode = 'actual'; // 'actual' or 'projected'
+let lbMode = 'actual';
 
 function dateKey(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -362,14 +337,10 @@ function getFridays() {
   return fridays;
 }
 
-// All Fridays in 2026 from tally start to year end
 function getAllTallyFridays() {
   const fridays = [];
   const d = new Date(TALLY_START);
-  while (d <= YEAR_END) {
-    fridays.push(new Date(d));
-    d.setDate(d.getDate() + 7);
-  }
+  while (d <= YEAR_END) { fridays.push(new Date(d)); d.setDate(d.getDate() + 7); }
   return fridays;
 }
 
@@ -393,7 +364,7 @@ function getWeekIndex(fri) {
   return Math.round((fri - START_DATE) / (7*24*60*60*1000));
 }
 
-function getPairForFriday(fri, active, allPairs) {
+function getPairForFriday(fri, allPairs) {
   const key = dateKey(fri);
   if (CLOSED_DATES.includes(key)) return null;
   if (overrides[key]) return overrides[key];
@@ -403,27 +374,24 @@ function getPairForFriday(fri, active, allPairs) {
   return pair ? pair.map(p => p.name) : [];
 }
 
-// Build tally counts for all 2026 Fridays from TALLY_START
 function buildTallies() {
   const active = people.filter(p => p.status === 'active');
   const allPairs = generateRoundRobin(active);
   const today = new Date(); today.setHours(0,0,0,0);
   const allFridays = getAllTallyFridays();
-
-  const actual = {};
-  const projected = {};
+  const actual = {}, projected = {};
   people.forEach(p => { actual[p.name] = 0; projected[p.name] = 0; });
-
   allFridays.forEach(fri => {
-    const pair = getPairForFriday(fri, active, allPairs);
-    if (!pair) return; // closed
+    const pair = getPairForFriday(fri, allPairs);
+    if (!pair) return;
     const isPast = fri < today;
     pair.forEach(name => {
-      if (isPast) actual[name] = (actual[name] || 0) + 1;
-      projected[name] = (projected[name] || 0) + 1;
+      if (active.find(p => p.name === name)) {
+        if (isPast) actual[name] = (actual[name] || 0) + 1;
+        projected[name] = (projected[name] || 0) + 1;
+      }
     });
   });
-
   return { actual, projected };
 }
 
@@ -431,21 +399,13 @@ function renderLeaderboard() {
   const active = people.filter(p => p.status === 'active');
   const inactive = people.filter(p => p.status === 'inactive');
   const { actual, projected } = buildTallies();
-  const year = TALLY_START.getFullYear();
-
-  document.getElementById('lb-year-label').textContent = `${year} Season`;
-  document.getElementById('lb-mode-label').textContent =
-    lbMode === 'actual' ? 'Fridays worked so far' : 'Projected full year';
-
-  // Sort by chosen mode descending
+  document.getElementById('lb-year-label').textContent = '2026 Season';
+  document.getElementById('lb-mode-label').textContent = lbMode === 'actual' ? 'Fridays worked so far' : 'Projected full year';
   const scores = lbMode === 'actual' ? actual : projected;
   const sorted = [...active].sort((a, b) => (scores[b.name] || 0) - (scores[a.name] || 0));
   const maxScore = Math.max(...sorted.map(p => scores[p.name] || 0), 1);
-
   const rankSymbols = ['🥇', '🥈', '🥉'];
-
-  const rowsEl = document.getElementById('lb-rows');
-  rowsEl.innerHTML = sorted.map((p, i) => {
+  document.getElementById('lb-rows').innerHTML = sorted.map((p, i) => {
     const score = scores[p.name] || 0;
     const proj = projected[p.name] || 0;
     const pct = Math.round((score / maxScore) * 100);
@@ -465,23 +425,17 @@ function renderLeaderboard() {
         </div>
       </div>`;
   }).join('');
-
-  // Inactive section
   const inactiveEl = document.getElementById('lb-inactive-section');
-  if (inactive.length) {
-    inactiveEl.innerHTML = `
-      <div class="lb-inactive-row">
-        <div class="lb-inactive-label">Not yet active</div>
-        ${inactive.map(p => `
-          <div class="lb-inactive-item">
-            <div class="lb-inactive-avatar">${p.name.slice(0,2).toUpperCase()}</div>
-            <span class="lb-inactive-name">${p.name}</span>
-            <span class="lb-inactive-tag">Pending</span>
-          </div>`).join('')}
-      </div>`;
-  } else {
-    inactiveEl.innerHTML = '';
-  }
+  inactiveEl.innerHTML = inactive.length ? `
+    <div class="lb-inactive-row">
+      <div class="lb-inactive-label">Not yet active</div>
+      ${inactive.map(p => `
+        <div class="lb-inactive-item">
+          <div class="lb-inactive-avatar">${p.name.slice(0,2).toUpperCase()}</div>
+          <span class="lb-inactive-name">${p.name}</span>
+          <span class="lb-inactive-tag">Pending</span>
+        </div>`).join('')}
+    </div>` : '';
 }
 
 function setLbMode(mode) {
@@ -498,14 +452,12 @@ function renderSchedule() {
   const container = document.getElementById('schedule-grid');
   container.innerHTML = '';
   document.getElementById('stat-active').textContent = active.length;
-
   const months = {};
   fridays.forEach(fri => {
     const mk = fmtMonth(fri);
     if (!months[mk]) months[mk] = [];
     months[mk].push(fri);
   });
-
   Object.entries(months).forEach(([monthLabel, fris]) => {
     const group = document.createElement('div');
     group.className = 'month-group';
@@ -515,25 +467,17 @@ function renderSchedule() {
     group.appendChild(lbl);
     const grid = document.createElement('div');
     grid.className = 'schedule-grid';
-
     fris.forEach(fri => {
       const key = dateKey(fri);
       const isClosed = CLOSED_DATES.includes(key);
-      let inOffice, isOverride = false;
-
-      if (isClosed) {
-        inOffice = [];
-      } else if (overrides[key]) {
-        inOffice = overrides[key]; isOverride = true;
-      } else {
-        const wi = getWeekIndex(fri);
-        const pair = allPairs.length ? allPairs[((wi % allPairs.length) + allPairs.length) % allPairs.length] : [];
-        inOffice = pair ? pair.map(p => p.name) : [];
+      let inOffice = [];
+      if (!isClosed) {
+        const pair = getPairForFriday(fri, allPairs);
+        inOffice = pair || [];
       }
-
       const remote = isClosed ? [] : active.map(p => p.name).filter(n => !inOffice.includes(n));
       const card = document.createElement('div');
-      card.className = 'week-card' + (isOverride ? ' is-override' : '') + (isClosed ? ' is-closed' : '');
+      card.className = 'week-card' + (isClosed ? ' is-closed' : '');
       card.innerHTML = `
         <div class="week-card-header">
           <span class="week-date">${fmtShort(fri)}</span>
@@ -549,7 +493,6 @@ function renderSchedule() {
         </div>`;
       grid.appendChild(card);
     });
-
     group.appendChild(grid);
     container.appendChild(group);
   });
@@ -571,33 +514,10 @@ function renderPeople() {
   });
 }
 
-function renderOverrideSelects() {
-  const active = people.filter(p => p.status === 'active');
-  ['override-p1','override-p2'].forEach((id,idx) => {
-    const sel = document.getElementById(id);
-    sel.innerHTML = active.map(p=>`<option value="${p.name}">${p.name}</option>`).join('');
-    if (idx===1 && active.length>1) sel.selectedIndex=1;
-  });
-}
-
-function renderOverridesList() {
-  const div = document.getElementById('overrides-list');
-  const keys = Object.keys(overrides).sort();
-  if (!keys.length) { div.innerHTML='<p class="empty-state">No overrides set.</p>'; return; }
-  div.innerHTML = keys.map(k=>`
-    <div class="override-item">
-      <span style="font-size:12px;color:var(--muted);min-width:100px;font-weight:600;">${k}</span>
-      <span style="font-size:13px;font-weight:600;color:var(--green-text);flex:1;">${overrides[k].join(' &amp; ')}</span>
-      <button class="btn-danger" onclick="removeOverride('${k}')">Remove</button>
-    </div>`).join('');
-}
-
 function render() {
   renderSchedule();
   renderPeople();
   renderLeaderboard();
-  renderOverrideSelects();
-  renderOverridesList();
 }
 
 function showTab(t) {
@@ -620,17 +540,7 @@ function removePerson(i) {
 function toggleStatus(i) {
   people[i].status = people[i].status==='active'?'inactive':'active'; render();
 }
-function applyOverride() {
-  const date = document.getElementById('override-date').value;
-  const p1 = document.getElementById('override-p1').value;
-  const p2 = document.getElementById('override-p2').value;
-  if (!date) { alert('Please select a date.'); return; }
-  if (p1===p2) { alert('Please select two different people.'); return; }
-  overrides[date] = [p1,p2]; render();
-}
-function removeOverride(k) { delete overrides[k]; render(); }
 
-document.getElementById('override-date').value = '2026-04-10';
 render();
 </script>
 </body>
