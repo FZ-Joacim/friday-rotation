@@ -232,7 +232,7 @@
       <div class="card">
         <div class="card-title"><div class="card-title-icon">📅</div>6-Month Friday Schedule</div>
         <div id="schedule-grid"></div>
-        <div class="notice">Two team members are required in the office each Friday. Pairs rotate using round-robin scheduling — with 5 active members there are 10 unique pairs before any combination repeats. The tally on the left counts from April 10, 2026 onward.</div>
+        <div class="notice">Two team members are required in the office each Friday. Pairs rotate using round-robin scheduling — with 6 active members there are 15 unique pairs before any combination repeats. The tally on the left counts from April 10, 2026 onward.</div>
       </div>
     </div>
 
@@ -276,14 +276,13 @@
 // ===== EDIT PEOPLE HERE =====
 // 'active'   = in the rotation
 // 'inactive' = excluded (no remote access yet)
-// Change Joe to 'active' when he gets remote access
 let people = [
-  { name: 'Joacim',   status: 'active'   },
-  { name: 'Stefan',   status: 'active'   },
-  { name: 'Maria',    status: 'active'   },
-  { name: 'Cole',     status: 'active'   },
-  { name: 'Anthony',  status: 'active'   },
-  { name: 'Joe',      status: 'inactive' },
+  { name: 'Joacim',   status: 'active' },
+  { name: 'Stefan',   status: 'active' },
+  { name: 'Maria',    status: 'active' },
+  { name: 'Cole',     status: 'active' },
+  { name: 'Anthony',  status: 'active' },
+  { name: 'Joe',      status: 'active' },
 ];
 
 // ===== EDIT OVERRIDES HERE =====
@@ -294,11 +293,37 @@ let overrides = {
   '2026-04-24': ['Joacim', 'Maria'],
   '2026-05-01': ['Stefan', 'Cole'],
   '2026-05-08': ['Anthony', 'Joacim'],
-  '2026-05-15': ['Maria', 'Anthony'],
-  '2026-05-22': ['Stefan', 'Cole'],
-  '2026-05-29': ['Joacim', 'Anthony'],
-  '2026-07-24': ['Cole', 'Anthony'],
+  '2026-05-15': ['Joe', 'Maria'],
+  '2026-05-22': ['Anthony', 'Cole'],
+  '2026-05-29': ['Joe', 'Maria'],
+  '2026-06-05': ['Joacim', 'Anthony'],
+  '2026-06-12': ['Stefan', 'Cole'],
+  '2026-06-26': ['Joe', 'Anthony'],
+  '2026-07-10': ['Joacim', 'Maria'],
+  '2026-07-17': ['Stefan', 'Cole'],
+  '2026-07-24': ['Joe', 'Anthony'],
   '2026-07-31': ['Joacim', 'Maria'],
+  '2026-08-07': ['Stefan', 'Cole'],
+  '2026-08-14': ['Joe', 'Anthony'],
+  '2026-08-21': ['Joacim', 'Maria'],
+  '2026-08-28': ['Stefan', 'Cole'],
+  '2026-09-04': ['Joe', 'Anthony'],
+  '2026-09-11': ['Joacim', 'Maria'],
+  '2026-09-18': ['Stefan', 'Cole'],
+  '2026-09-25': ['Joe', 'Anthony'],
+  '2026-10-02': ['Joacim', 'Maria'],
+  '2026-10-09': ['Stefan', 'Cole'],
+  '2026-10-16': ['Joe', 'Anthony'],
+  '2026-10-23': ['Joacim', 'Maria'],
+  '2026-10-30': ['Stefan', 'Cole'],
+  '2026-11-06': ['Joe', 'Anthony'],
+  '2026-11-13': ['Joacim', 'Maria'],
+  '2026-11-20': ['Stefan', 'Cole'],
+  '2026-11-27': ['Joe', 'Anthony'],
+  '2026-12-04': ['Joacim', 'Maria'],
+  '2026-12-11': ['Stefan', 'Cole'],
+  '2026-12-18': ['Joe', 'Anthony'],
+  '2026-12-25': ['Joacim', 'Stefan'],
 };
 
 // ===== OFFICE CLOSED DATES =====
