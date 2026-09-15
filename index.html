@@ -57,44 +57,11 @@
   .hero-text p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 480px; }
 
   /* PAGE BODY */
-  .page-body { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
-  .main-content { flex: 1; min-width: 0; }
-
-  /* LEADERBOARD PANEL */
-  .leaderboard-panel { width: 230px; flex-shrink: 0; position: sticky; top: 1.5rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 1px 6px rgba(13,30,58,0.07); overflow: hidden; }
-  .lb-header { background: var(--navy); padding: 14px 16px 12px; border-bottom: 2px solid var(--gold); }
-  .lb-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
-  .lb-subtitle { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
-  .lb-toggle { display: flex; border-bottom: 1px solid var(--border); }
-  .lb-toggle-btn { flex: 1; padding: 8px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border: none; background: var(--off-white); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'Source Sans 3', sans-serif; border-radius: 0; }
-  .lb-toggle-btn:first-child { border-right: 1px solid var(--border); }
-  .lb-toggle-btn.active { background: var(--white); color: var(--navy); }
-  .lb-body { padding: 12px 14px 16px; }
-  .lb-mode-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 7px; border-bottom: 1px solid var(--blue-soft); }
-  .lb-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--blue-soft); }
-  .lb-row:last-child { border-bottom: none; }
-  .lb-rank { font-size: 10px; font-weight: 700; width: 16px; text-align: center; flex-shrink: 0; color: var(--muted); }
-  .rank-1 { color: #b89a4e; }
-  .rank-2 { color: #8a9aaa; }
-  .rank-3 { color: #a0734a; }
-  .lb-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: var(--gold-light); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
-  .lb-info { flex: 1; min-width: 0; }
-  .lb-name { font-size: 12px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lb-bar-wrap { height: 3px; background: var(--blue-soft); border-radius: 2px; margin-top: 4px; }
-  .lb-bar { height: 3px; background: var(--navy-mid); border-radius: 2px; transition: width 0.5s ease; }
-  .lb-score-col { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
-  .lb-score { font-size: 16px; font-weight: 700; color: var(--navy-mid); font-family: 'Playfair Display', serif; line-height: 1; }
-  .lb-proj-score { font-size: 10px; color: var(--muted); line-height: 1; margin-top: 3px; }
-  .lb-zero { color: var(--border-dark); }
-  .lb-inactive-row { padding: 10px 0 2px; border-top: 1px solid var(--blue-soft); margin-top: 4px; }
-  .lb-inactive-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 6px; }
-  .lb-inactive-item { display: flex; align-items: center; gap: 7px; padding: 4px 0; }
-  .lb-inactive-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border); color: var(--muted); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
-  .lb-inactive-name { font-size: 11px; color: var(--muted); flex: 1; }
-  .lb-inactive-tag { font-size: 9px; background: var(--red-bg); color: var(--red-text); padding: 1px 5px; border-radius: 3px; font-weight: 600; }
+  .page-body { max-width: 1060px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  .main-content { min-width: 0; }
 
   /* TABS */
-  .tabs { display: flex; margin-bottom: 1.75rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 5px; width: fit-content; box-shadow: 0 1px 4px rgba(13,30,58,0.06); }
+  .tabs { display: flex; margin-bottom: 1.75rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 5px; width: fit-content; box-shadow: 0 1px 4px rgba(13,30,58,0.06); flex-wrap: wrap; }
   .tab { padding: 8px 20px; border: none; border-radius: var(--radius-sm); background: transparent; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; letter-spacing: 0.03em; transition: all 0.15s; }
   .tab:hover { color: var(--navy); background: var(--blue-pale); }
   .tab.active { background: var(--navy); color: var(--white); font-weight: 600; }
@@ -110,17 +77,22 @@
   .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 10px; }
   .week-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; transition: box-shadow 0.15s, border-color 0.15s; }
   .week-card:hover { box-shadow: 0 4px 14px rgba(13,30,58,0.12); border-color: var(--border-dark); }
-  .week-card.is-closed { opacity: 0.5; }
-  .week-card-header { background: var(--blue-soft); padding: 7px 12px; display: flex; align-items: center; justify-content: space-between; }
-  .week-card.is-closed .week-card-header { background: #e8e8e8; }
+  .week-card.is-holiday { opacity: 0.55; }
+  .week-card.is-remote { opacity: 0.85; }
+  .week-card-header { background: var(--blue-soft); padding: 7px 12px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .week-card.is-holiday .week-card-header { background: #e8e8e8; }
+  .week-card.is-remote .week-card-header { background: var(--gold-pale); }
   .week-date { font-size: 11px; font-weight: 700; color: var(--navy-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-  .closed-badge { font-size: 9px; background: #aaa; color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .closed-badge { font-size: 9px; background: #8a8a8a; color: var(--white); padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+  .closed-badge.remote { background: var(--gold); }
   .week-card-body { padding: 10px 12px 12px; }
   .in-office { font-size: 13px; font-weight: 600; color: var(--green-text); line-height: 1.5; margin-bottom: 8px; }
   .person-line { display: flex; align-items: center; gap: 6px; }
   .person-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-text); flex-shrink: 0; }
   .remote-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 3px; }
   .remote-list { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .closed-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .closed-body strong { display: block; color: #6a6a6a; font-weight: 600; margin-bottom: 2px; }
 
   /* PEOPLE */
   .person-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--blue-soft); }
@@ -130,6 +102,36 @@
   .status-pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
   .pill-active { background: var(--green-bg); color: var(--green-text); }
   .pill-inactive { background: var(--red-bg); color: var(--red-text); }
+
+  /* TALLY TAB */
+  .tally-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .tally-toggle { display: flex; width: fit-content; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .lb-toggle-btn { padding: 8px 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border: none; background: var(--off-white); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'Source Sans 3', sans-serif; border-radius: 0; }
+  .lb-toggle-btn:first-child { border-right: 1px solid var(--border); }
+  .lb-toggle-btn:hover { background: var(--blue-pale); }
+  .lb-toggle-btn.active { background: var(--navy); color: var(--white); }
+  .lb-mode-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; padding-bottom: 8px; border-bottom: 1px solid var(--blue-soft); }
+  .lb-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--blue-soft); }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-rank { font-size: 13px; font-weight: 700; width: 24px; text-align: center; flex-shrink: 0; color: var(--muted); }
+  .rank-1 { color: #b89a4e; }
+  .rank-2 { color: #8a9aaa; }
+  .rank-3 { color: #a0734a; }
+  .lb-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: var(--gold-light); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
+  .lb-info { flex: 1; min-width: 0; }
+  .lb-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-bar-wrap { height: 5px; max-width: 420px; background: var(--blue-soft); border-radius: 3px; margin-top: 6px; }
+  .lb-bar { height: 5px; background: var(--navy-mid); border-radius: 3px; transition: width 0.5s ease; }
+  .lb-score-col { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
+  .lb-score { font-size: 22px; font-weight: 700; color: var(--navy-mid); font-family: 'Playfair Display', serif; line-height: 1; }
+  .lb-proj-score { font-size: 11px; color: var(--muted); }
+  .lb-zero { color: var(--border-dark); }
+  .lb-inactive-row { padding: 14px 0 2px; border-top: 1px solid var(--blue-soft); margin-top: 6px; }
+  .lb-inactive-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
+  .lb-inactive-item { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+  .lb-inactive-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border); color: var(--muted); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; }
+  .lb-inactive-name { font-size: 12px; color: var(--muted); flex: 1; }
+  .lb-inactive-tag { font-size: 9px; background: var(--red-bg); color: var(--red-text); padding: 1px 5px; border-radius: 3px; font-weight: 600; }
 
   /* BUTTONS */
   button { cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
@@ -159,12 +161,13 @@
   .footer-note { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
 
   @media (max-width: 780px) {
-    .page-body { flex-direction: column-reverse; }
-    .leaderboard-panel { width: 100%; position: static; }
     .site-header { padding: 0 1rem; }
     .hero-band { padding: 1.25rem 1rem; }
     .header-right { display: none; }
     .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+    .tabs { width: 100%; }
+    .tab { flex: 1; padding: 8px 10px; text-align: center; }
+    .lb-bar-wrap { max-width: none; }
   }
 </style>
 </head>
@@ -203,28 +206,12 @@
 
 <div class="page-body">
 
-  <!-- LEADERBOARD PANEL -->
-  <aside class="leaderboard-panel">
-    <div class="lb-header">
-      <div class="lb-title">Friday Tally</div>
-      <div class="lb-subtitle" id="lb-year-label">2026</div>
-    </div>
-    <div class="lb-toggle">
-      <button class="lb-toggle-btn active" id="btn-actual" onclick="setLbMode('actual')">Actual</button>
-      <button class="lb-toggle-btn" id="btn-projected" onclick="setLbMode('projected')">Projected</button>
-    </div>
-    <div class="lb-body">
-      <div class="lb-mode-label" id="lb-mode-label">Fridays worked so far</div>
-      <div id="lb-rows"></div>
-      <div id="lb-inactive-section"></div>
-    </div>
-  </aside>
-
   <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="tabs">
       <button class="tab active" onclick="showTab('schedule')">Schedule</button>
       <button class="tab" onclick="showTab('people')">People</button>
+      <button class="tab" onclick="showTab('tally')">Friday tally</button>
       <button class="tab" onclick="showTab('howto')">How to edit</button>
     </div>
 
@@ -232,7 +219,7 @@
       <div class="card">
         <div class="card-title"><div class="card-title-icon">📅</div>6-Month Friday Schedule</div>
         <div id="schedule-grid"></div>
-        <div class="notice">Two team members are required in the office each Friday. The rotation runs with 5 active members (Joacim, Stefan, Cole, Anthony, Joe). The tally on the left counts from April 10, 2026 onward.</div>
+        <div class="notice">Two team members are required in the office each Friday. The rotation runs with 5 active members (Joacim, Stefan, Cole, Anthony, Joe). Fridays marked <strong>All remote</strong> mean the office is shut but everyone is working from home; Fridays marked <strong>Holiday</strong> mean the office is closed entirely. Neither counts toward anyone's tally.</div>
       </div>
     </div>
 
@@ -251,6 +238,23 @@
       </div>
     </div>
 
+    <div id="tab-tally" style="display:none;">
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">🗓️</div>Friday Tally — 2026 Season</div>
+        <div class="tally-controls">
+          <select id="season-select" onchange="setSeason(this.value)"></select>
+          <div class="tally-toggle">
+            <button class="lb-toggle-btn active" id="btn-actual" onclick="setLbMode('actual')">Actual</button>
+            <button class="lb-toggle-btn" id="btn-projected" onclick="setLbMode('projected')">Projected</button>
+          </div>
+        </div>
+        <div class="lb-mode-label" id="lb-mode-label">Fridays worked so far</div>
+        <div id="lb-rows"></div>
+        <div id="lb-inactive-section"></div>
+        <div class="notice" id="tally-notice"></div>
+      </div>
+    </div>
+
     <div id="tab-howto" style="display:none;">
       <div class="card">
         <div class="card-title"><div class="card-title-icon">📖</div>How to Make Changes</div>
@@ -260,8 +264,10 @@
         <div class="howto-step"><div class="step-num">3</div><div class="step-text">Click the <strong>pencil icon</strong> (top right) to open the editor.</div></div>
         <div class="howto-step"><div class="step-num">4</div><div class="step-text">To add/change a person find <code>// ===== EDIT PEOPLE HERE =====</code>. Change <code>inactive</code> to <code>active</code> to add someone to the rotation.</div></div>
         <div class="howto-step"><div class="step-num">5</div><div class="step-text">For a schedule change find <code>// ===== EDIT OVERRIDES HERE =====</code> and add:<br/><code style="display:inline-block;margin-top:5px;">'2026-06-12': ['Stefan', 'Cole'],</code></div></div>
-        <div class="howto-step"><div class="step-num">6</div><div class="step-text">For a closed day find <code>// ===== OFFICE CLOSED DATES =====</code> and add the date.</div></div>
-        <div class="howto-step"><div class="step-num">7</div><div class="step-text">Click <strong>Commit changes</strong> — the live site updates in about 60 seconds.</div></div>
+        <div class="howto-step"><div class="step-num">6</div><div class="step-text">For a Friday where the <strong>office is shut but everyone works from home</strong>, find <code>// ===== OFFICE CLOSED — ALL REMOTE =====</code> and add:<br/><code style="display:inline-block;margin-top:5px;">'2026-11-27': 'Day after Thanksgiving',</code></div></div>
+        <div class="howto-step"><div class="step-num">7</div><div class="step-text">For a Friday where <strong>nobody is working at all</strong>, find <code>// ===== OFFICE CLOSED — HOLIDAYS =====</code> and add it there instead:<br/><code style="display:inline-block;margin-top:5px;">'2026-12-25': 'Christmas Day',</code><br/>Either list skips the Friday and leaves everyone's tally untouched. If the date also appears under overrides, delete it there.</div></div>
+        <div class="howto-step"><div class="step-num">8</div><div class="step-text">To start a new tally year find <code>// ===== SEASONS =====</code> and add a line:<br/><code style="display:inline-block;margin-top:5px;">{ label: '2028 Season', start: '2028-01-07', end: '2028-12-31' },</code><br/>The <strong>Friday tally</strong> tab picks whichever season today falls in, and the dropdown lets you look back at earlier ones.</div></div>
+        <div class="howto-step"><div class="step-num">9</div><div class="step-text">Click <strong>Commit changes</strong> — the live site updates in about 60 seconds.</div></div>
       </div>
     </div>
   </div>
@@ -289,6 +295,8 @@ let people = [
 // ===== EDIT OVERRIDES HERE =====
 // Format: 'YYYY-MM-DD': ['Person1', 'Person2'],
 // Note: Maria appears in May overrides only — she is not in the rotation from June 5.
+// Nov 27 and Dec 25 were removed from this list — the office is closed those days
+// (see OFFICE CLOSED DATES below).
 let overrides = {
   '2026-04-10': ['Maria', 'Stefan'],
   '2026-04-17': ['Joacim', 'Cole'],
@@ -321,30 +329,52 @@ let overrides = {
   '2026-11-06': ['Cole', 'Joe'],
   '2026-11-13': ['Joacim', 'Anthony'],
   '2026-11-20': ['Stefan', 'Joe'],
-  '2026-11-27': ['Cole', 'Anthony'],
   '2026-12-04': ['Joacim', 'Joe'],
   '2026-12-11': ['Stefan', 'Cole'],
   '2026-12-18': ['Anthony', 'Joe'],
-  '2026-12-25': ['Joacim', 'Stefan'],
 };
 
-// ===== OFFICE CLOSED DATES =====
-// These Fridays are skipped entirely — no one counts
-const CLOSED_DATES = [
-  '2026-04-03', // Office closed — tally starts April 10
-  '2026-06-19', // Office closed — Juneteenth
-  '2026-07-03', // Office closed — Independence Day
+// ===== OFFICE CLOSED — ALL REMOTE =====
+// Office is shut but everyone is working, from home. No one is assigned to the
+// office and the Friday doesn't count toward anyone's tally.
+// Format: 'YYYY-MM-DD': 'Reason shown on the card',
+const ALL_REMOTE_DATES = {
+  '2026-11-27': 'Day after Thanksgiving',
+};
+
+// ===== OFFICE CLOSED — HOLIDAYS =====
+// Nobody is working at all. Same effect on the rotation and the tally.
+// Format: 'YYYY-MM-DD': 'Reason shown on the card',
+const HOLIDAY_DATES = {
+  '2026-06-19': 'Juneteenth',
+  '2026-07-03': 'Independence Day',
+  '2026-12-25': 'Christmas Day',
+  '2027-01-01': "New Year's Day",
+};
+
+// ===== SEASONS (tally periods) =====
+// Each season is tallied separately. Add a new line each year.
+// Format: { label: 'Name in the dropdown', start: 'YYYY-MM-DD', end: 'YYYY-MM-DD' },
+const SEASONS = [
+  { label: '2026 Season', start: '2026-04-10', end: '2026-12-31' },
+  { label: '2027 Season', start: '2027-01-01', end: '2027-12-31' },
 ];
 // ===== END OF EDITABLE SECTIONS =====
 
-const START_DATE  = new Date('2026-04-03T00:00:00');
-const TALLY_START = new Date('2026-04-10T00:00:00');
-const YEAR_END    = new Date('2026-12-31T00:00:00');
+const START_DATE = new Date('2026-04-03T00:00:00');
 
 let lbMode = 'actual';
+let seasonIndex = 0;
 
 function dateKey(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+// Returns null on a normal Friday, or { type, reason } when the office is closed.
+function getClosure(d) {
+  const key = dateKey(d);
+  if (ALL_REMOTE_DATES[key]) return { type: 'remote',  reason: ALL_REMOTE_DATES[key] };
+  if (HOLIDAY_DATES[key])    return { type: 'holiday', reason: HOLIDAY_DATES[key] };
+  return null;
 }
 function fmtShort(d) { return d.toLocaleDateString('en-US', { month:'short', day:'numeric' }); }
 function fmtMonth(d) { return d.toLocaleDateString('en-US', { month:'long', year:'numeric' }); }
@@ -362,11 +392,21 @@ function getFridays() {
   return fridays;
 }
 
-function getAllTallyFridays() {
+function getAllTallyFridays(season) {
+  const d = new Date(season.start + 'T00:00:00');
+  const end = new Date(season.end + 'T00:00:00');
+  d.setDate(d.getDate() + ((5 - d.getDay() + 7) % 7)); // roll forward to a Friday
   const fridays = [];
-  const d = new Date(TALLY_START);
-  while (d <= YEAR_END) { fridays.push(new Date(d)); d.setDate(d.getDate() + 7); }
+  while (d <= end) { fridays.push(new Date(d)); d.setDate(d.getDate() + 7); }
   return fridays;
+}
+
+function currentSeasonIndex() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  for (let i = 0; i < SEASONS.length; i++) {
+    if (today >= new Date(SEASONS[i].start + 'T00:00:00') && today <= new Date(SEASONS[i].end + 'T00:00:00')) return i;
+  }
+  return SEASONS.length - 1;
 }
 
 function generateRoundRobin(players) {
@@ -391,7 +431,7 @@ function getWeekIndex(fri) {
 
 function getPairForFriday(fri, allPairs) {
   const key = dateKey(fri);
-  if (CLOSED_DATES.includes(key)) return null;
+  if (getClosure(fri)) return null;
   if (overrides[key]) return overrides[key];
   if (!allPairs.length) return [];
   const wi = getWeekIndex(fri);
@@ -399,11 +439,11 @@ function getPairForFriday(fri, allPairs) {
   return pair ? pair.map(p => p.name) : [];
 }
 
-function buildTallies() {
+function buildTallies(season) {
   const active = people.filter(p => p.status === 'active');
   const allPairs = generateRoundRobin(active);
   const today = new Date(); today.setHours(0,0,0,0);
-  const allFridays = getAllTallyFridays();
+  const allFridays = getAllTallyFridays(season);
   const actual = {}, projected = {};
   people.forEach(p => { actual[p.name] = 0; projected[p.name] = 0; });
   allFridays.forEach(fri => {
@@ -423,9 +463,21 @@ function buildTallies() {
 function renderLeaderboard() {
   const active = people.filter(p => p.status === 'active');
   const inactive = people.filter(p => p.status === 'inactive');
-  const { actual, projected } = buildTallies();
-  document.getElementById('lb-year-label').textContent = '2026 Season';
-  document.getElementById('lb-mode-label').textContent = lbMode === 'actual' ? 'Fridays worked so far' : 'Projected full year';
+  const season = SEASONS[seasonIndex];
+  const { actual, projected } = buildTallies(season);
+  const sel = document.getElementById('season-select');
+  if (sel.options.length !== SEASONS.length) {
+    sel.innerHTML = SEASONS.map((s, i) => `<option value="${i}">${s.label}</option>`).join('');
+  }
+  sel.value = String(seasonIndex);
+  document.getElementById('lb-mode-label').textContent =
+    lbMode === 'actual' ? `Fridays worked so far — ${season.label}` : `Projected full season — ${season.label}`;
+  const seasonStart = new Date(season.start + 'T00:00:00')
+    .toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+  document.getElementById('tally-notice').innerHTML =
+    `Each season is counted on its own — this one starts ${seasonStart}. Closure Fridays are skipped. `
+    + `Totals aren't a like-for-like comparison: anyone who joined the rotation partway through a season will show a lower count `
+    + `simply because they had fewer Fridays available, not because they've taken a smaller share.`;
   const scores = lbMode === 'actual' ? actual : projected;
   const sorted = [...active].sort((a, b) => (scores[b.name] || 0) - (scores[a.name] || 0));
   const maxScore = Math.max(...sorted.map(p => scores[p.name] || 0), 1);
@@ -446,7 +498,7 @@ function renderLeaderboard() {
         </div>
         <div class="lb-score-col">
           <div class="lb-score ${score === 0 ? 'lb-zero' : ''}">${score}</div>
-          ${lbMode === 'actual' ? `<div class="lb-proj-score">/${proj} proj</div>` : ''}
+          ${lbMode === 'actual' ? `<div class="lb-proj-score">of ${proj} projected</div>` : ''}
         </div>
       </div>`;
   }).join('');
@@ -461,6 +513,11 @@ function renderLeaderboard() {
           <span class="lb-inactive-tag">Pending</span>
         </div>`).join('')}
     </div>` : '';
+}
+
+function setSeason(i) {
+  seasonIndex = parseInt(i, 10) || 0;
+  renderLeaderboard();
 }
 
 function setLbMode(mode) {
@@ -493,29 +550,31 @@ function renderSchedule() {
     const grid = document.createElement('div');
     grid.className = 'schedule-grid';
     fris.forEach(fri => {
-      const key = dateKey(fri);
-      const isClosed = CLOSED_DATES.includes(key);
+      const closure = getClosure(fri);
       let inOffice = [];
-      if (!isClosed) {
+      if (!closure) {
         const pair = getPairForFriday(fri, allPairs);
         inOffice = pair || [];
       }
-      const remote = isClosed ? [] : active.map(p => p.name).filter(n => !inOffice.includes(n));
+      const remote = closure ? [] : active.map(p => p.name).filter(n => !inOffice.includes(n));
       const card = document.createElement('div');
-      card.className = 'week-card' + (isClosed ? ' is-closed' : '');
+      card.className = 'week-card' + (closure ? (closure.type === 'remote' ? ' is-remote' : ' is-holiday') : '');
+      let body;
+      if (closure && closure.type === 'remote') {
+        body = `<div class="closed-body"><strong>Everyone remote</strong>Office closed · ${closure.reason}</div>`;
+      } else if (closure) {
+        body = `<div class="closed-body"><strong>Office closed</strong>${closure.reason}</div>`;
+      } else {
+        body = `<div class="in-office">${inOffice.map(n=>`<div class="person-line"><span class="person-dot"></span>${n}</div>`).join('')}</div>
+               <div class="remote-label">Remote</div>
+               <div class="remote-list">${remote.join(', ') || '—'}</div>`;
+      }
       card.innerHTML = `
         <div class="week-card-header">
           <span class="week-date">${fmtShort(fri)}</span>
-          ${isClosed ? '<span class="closed-badge">Closed</span>' : ''}
+          ${closure ? `<span class="closed-badge${closure.type === 'remote' ? ' remote' : ''}">${closure.type === 'remote' ? 'All remote' : 'Holiday'}</span>` : ''}
         </div>
-        <div class="week-card-body">
-          ${isClosed
-            ? '<div style="font-size:12px;color:var(--muted);font-style:italic;">Office closed</div>'
-            : `<div class="in-office">${inOffice.map(n=>`<div class="person-line"><span class="person-dot"></span>${n}</div>`).join('')}</div>
-               <div class="remote-label">Remote</div>
-               <div class="remote-list">${remote.join(', ') || '—'}</div>`
-          }
-        </div>`;
+        <div class="week-card-body">${body}</div>`;
       grid.appendChild(card);
     });
     group.appendChild(grid);
@@ -546,7 +605,7 @@ function render() {
 }
 
 function showTab(t) {
-  ['schedule','people','howto'].forEach((id,idx) => {
+  ['schedule','people','tally','howto'].forEach((id,idx) => {
     document.getElementById('tab-'+id).style.display = id===t?'':'none';
     document.querySelectorAll('.tab')[idx].classList.toggle('active', id===t);
   });
@@ -566,6 +625,7 @@ function toggleStatus(i) {
   people[i].status = people[i].status==='active'?'inactive':'active'; render();
 }
 
+seasonIndex = currentSeasonIndex();
 render();
 </script>
 </body>
